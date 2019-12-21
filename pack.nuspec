@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+		<metadata>
+			<id>MVVMLight.Prism.Converter</id>
+			<version>0.0.1</version>
+			<description>Converter for MVVMLight apps for easy migration to Prism framework.</description>
+			<authors>barimale</authors>
+			<owners>barimale</owners>
+			<requireLicenseAcceptance>false</requireLicenseAcceptance>
+			<projectUrl>https://github.com/barimale/MVVMLight.Prism.Converter</projectUrl>
+			<tags>MVVMLight;Prism</tags>
+			<dependencies>
+				<group targetFramework=".NETFramework4.7">
+					<dependency id="MvvmLightLibs" version="5.4.1.1" exclude="Build,Analyzers" />
+					<dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+					<dependency id="Prism.Core" version="7.2.0.1422" exclude="Build,Analyzers" />
+				</group>
+				<group targetFramework=".NETCoreApp3.0">
+					<dependency id="MvvmLightLibs" version="5.4.1.1" exclude="Build,Analyzers" />
+					<dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+					<dependency id="Prism.Core" version="7.2.0.1422" exclude="Build,Analyzers" />
+				</group>
+			</dependencies>
+		</metadata>
+	<files>
+		<file src="MVVMLight.Prism.Converter\bin\Release\net47\MVVMLight.Prism.Converter.dll" target="lib\net47" />
+		<file src="MVVMLight.Prism.Converter\bin\Release\net47\MVVMLight.Prism.Converter.pdb" target="lib\net47" />
+		<file src="MVVMLight.Prism.Converter\bin\Release\netcoreapp3.0\MVVMLight.Prism.Converter.dll" target="lib\netcoreapp3.0" />
+		<file src="MVVMLight.Prism.Converter\bin\Release\netcoreapp3.0\MVVMLight.Prism.Converter.pdb" target="lib\netcoreapp3.0" />
+	</files>
+</package>

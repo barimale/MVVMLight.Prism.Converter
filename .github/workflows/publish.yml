@@ -1,0 +1,37 @@
+name: Publish
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: actions/setup-dotnet@v1
+
+    - name: Setup Nuget
+      uses: warrenbuckley/Setup-Nuget@v1
+
+    - name: Nuget Add source 
+      run: nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/barimale/index.json" -UserName barimale -Password ${{ secrets.VS2019 }}
+      
+    - name: Nuget Add apiKey 
+      run: nuget setapikey ${{ secrets.NUGET_ORG_TOKEN }} -Source "https://api.nuget.org/v3/index.json"
+
+    - name: Nuget Restore 
+      run: nuget restore .\MVVMLight.Prism.Converter.sln
+
+    - name: Build Solution
+      run: dotnet build .\MVVMLight.Prism.Converter.sln --configuration Release
+
+    - name: Nuget Pack
+      run: nuget pack .\pack.nuspec -Properties Configuration=Release -OutputDirectory .\nugetPackages -Symbols -SymbolPackageFormat snupkg 
+
+    - name: Nuget Push2
+      run: nuget push .\nugetPackages\*.nupkg -Source GitHub 
+
+    - name: Nuget Push
+      run: nuget push .\nugetPackages\*.nupkg -Source "https://api.nuget.org/v3/index.json"
